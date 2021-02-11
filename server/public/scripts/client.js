@@ -7,6 +7,7 @@ $(document).ready(function () {
 function addClickHandlers() {
   $('#submitBtn').on('click', handleSubmit);
   $(document).on('click', '.delete', deleteBook);
+  $(document).on('click', '.done', markRead);
 
   // TODO - Add code for edit & delete buttons
 }
@@ -62,6 +63,8 @@ function renderBooks(books) {
       <tr>
         <td>${book.title}</td>
         <td>${book.author}</td>
+        <td>${book.isRead}</td>
+        <td><button class="done" data-id="${book.id}">✓</button></td>
         <td><button class="delete" data-id="${book.id}">X</button></td>
       </tr>
     `);
@@ -84,4 +87,8 @@ function deleteBook() {
     .catch((err) => {
       console.log(err);
     });
+}
+
+function markRead() {
+  //console.log('mark read');
 }
