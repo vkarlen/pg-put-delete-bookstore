@@ -6,6 +6,7 @@ $(document).ready(function () {
 
 function addClickHandlers() {
   $('#submitBtn').on('click', handleSubmit);
+  $(document).on('click', '.delete', deleteBook);
 
   // TODO - Add code for edit & delete buttons
 }
@@ -65,4 +66,22 @@ function renderBooks(books) {
       </tr>
     `);
   }
+}
+
+function deleteBook() {
+  console.log('delete');
+
+  let bookId = $(this).data('id');
+
+  $.ajax({
+    method: 'DELETE',
+    url: `/books/${bookId}`,
+  })
+    .then((response) => {
+      console.log('Book deleted');
+      refreshBooks();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
