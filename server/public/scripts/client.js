@@ -72,7 +72,7 @@ function renderBooks(books) {
 }
 
 function deleteBook() {
-  console.log('delete');
+  //console.log('delete');
 
   let bookId = $(this).data('id');
 
@@ -91,4 +91,18 @@ function deleteBook() {
 
 function markRead() {
   //console.log('mark read');
+
+  let bookId = $(this).data('id');
+
+  $.ajax({
+    method: 'PUT',
+    url: `/books/${bookId}`,
+  })
+    .then((response) => {
+      console.log('Updated record');
+      refreshBooks();
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
